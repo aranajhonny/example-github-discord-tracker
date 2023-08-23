@@ -3,6 +3,16 @@
 // `state` is an object that persists across program updates. Store data here.
 import { nodes, root, state } from "membrane";
 
+export const Root = {
+  status: () => {
+    if (!state.discordUrl && !state.repository) {
+      return "Please set the Discord url and Repository with [configure](:configure)";
+    } else {
+      return "Ready";
+    }
+  },
+};
+
 export async function configure({ args: { discordUrl, repo } }) {
   const [user, repository] = repo.split("/");
   if (!discordUrl) {
@@ -17,7 +27,8 @@ export async function configure({ args: { discordUrl, repo } }) {
   state.repository = repository;
   state.user = user;
 
-  await nodes.github.users.one({ name: user })
+  await nodes.github.users
+    .one({ name: user })
     .repos.one({ name: repository })
     .pushes.$subscribe(root.handleCommit);
 }
