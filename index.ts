@@ -13,7 +13,7 @@ export const Root = {
   },
 };
 
-export async function configure({ args: { discordUrl, repo } }) {
+export async function configure({ discordUrl, repo }) {
   const [user, repository] = repo.split("/");
   if (!discordUrl) {
     throw new Error("Discord webhook url is required");
@@ -33,7 +33,7 @@ export async function configure({ args: { discordUrl, repo } }) {
     .pushes.$subscribe(root.handleCommit);
 }
 
-export async function handleCommit({ event }) {
+export async function handleCommit(_, { event }) {
   const res = await event.commit.$query(
     `{ message, html_url, author { login } }`
   );

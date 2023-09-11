@@ -1,12 +1,12 @@
 {
   "types": {
-    "http": {
-      "gref_hash": "5cfa57fe83d1201eb831cc168a5dbe9decaa6010603df244ca6855f2fe61440c",
-      "type": "http:Root"
-    },
     "github": {
       "gref_hash": "e6e65bff3bc6bf18cb624db3dc3875132855784b407ad6877c3f2b19e56a428a",
       "type": "github:Root"
+    },
+    "http": {
+      "gref_hash": "5cfa57fe83d1201eb831cc168a5dbe9decaa6010603df244ca6855f2fe61440c",
+      "type": "http:Root"
     }
   },
   "imports": [
